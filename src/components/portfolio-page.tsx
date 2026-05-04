@@ -419,8 +419,18 @@ function Stack() {
                       className="group rounded-3xl border border-white/10 bg-white/[0.045] p-5 backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-cyan-200/35 hover:bg-white/[0.07] hover:shadow-2xl hover:shadow-cyan-950/20"
                     >
                       <div className="mb-5 flex items-center justify-between gap-4">
-                        <span className="flex size-12 items-center justify-center rounded-2xl border border-cyan-300/20 bg-cyan-300/10 text-sm font-semibold text-cyan-100">
-                          {tool.mark}
+                        <span
+                          className="flex size-12 items-center justify-center rounded-2xl border border-cyan-300/20 bg-cyan-300/10 text-sm font-semibold text-cyan-100"
+                          style={tool.logo ? { color: `#${tool.logo.hex}` } : undefined}
+                          aria-label={tool.logo?.title ?? tool.name}
+                        >
+                          {tool.logo ? (
+                            <svg role="img" viewBox="0 0 24 24" className="size-6" aria-hidden="true">
+                              <path d={tool.logo.path} fill="currentColor" />
+                            </svg>
+                          ) : (
+                            tool.mark
+                          )}
                         </span>
                         <Icon size={20} className="text-emerald-200 transition group-hover:text-cyan-100" />
                       </div>

@@ -21,6 +21,16 @@ import {
   Workflow,
   Zap,
 } from "lucide-react";
+import type { SimpleIcon } from "simple-icons";
+import {
+  siGotomeeting,
+  siJavascript,
+  siNodedotjs,
+  siOpenapiinitiative,
+  siPython,
+  siWhatsapp,
+  siZoho,
+} from "simple-icons";
 
 export const contact = {
   email: "luisaugustoo.mariano@gmail.com",
@@ -138,20 +148,33 @@ export const projects: Project[] = [
   },
 ];
 
-export const stackCategories = [
+export type StackTool = {
+  name: string;
+  category: string;
+  mark: string;
+  icon: LucideIcon;
+  logo?: SimpleIcon;
+};
+
+export type StackCategory = {
+  title: string;
+  tools: StackTool[];
+};
+
+export const stackCategories: StackCategory[] = [
   {
     title: "CRM e automação",
     tools: [
-      { name: "Zoho CRM", category: "CRM", mark: "ZC", icon: DatabaseZap },
-      { name: "Zoho Deluge", category: "Automação", mark: "DL", icon: Workflow },
-      { name: "Zoho Client Script", category: "CRM Frontend", mark: "CS", icon: Code2 },
+      { name: "Zoho CRM", category: "CRM", mark: "ZC", icon: DatabaseZap, logo: siZoho },
+      { name: "Zoho Deluge", category: "Automação", mark: "DL", icon: Workflow, logo: siZoho },
+      { name: "Zoho Client Script", category: "CRM Frontend", mark: "CS", icon: Code2, logo: siZoho },
     ],
   },
   {
     title: "Comunicação e atendimento",
     tools: [
-      { name: "WATI", category: "WhatsApp Business", mark: "WA", icon: MessageCircle },
-      { name: "GoTo Connect", category: "Telefonia", mark: "GT", icon: PhoneCall },
+      { name: "WATI", category: "WhatsApp Business", mark: "WA", icon: MessageCircle, logo: siWhatsapp },
+      { name: "GoTo Connect", category: "Telefonia", mark: "GT", icon: PhoneCall, logo: siGotomeeting },
       { name: "RD Station", category: "Marketing", mark: "RD", icon: Headphones },
     ],
   },
@@ -166,11 +189,11 @@ export const stackCategories = [
   {
     title: "Desenvolvimento e integrações",
     tools: [
-      { name: "APIs REST", category: "Integrações", mark: "API", icon: PlugZap },
+      { name: "APIs REST", category: "Integrações", mark: "API", icon: PlugZap, logo: siOpenapiinitiative },
       { name: "OAuth2", category: "Autenticação", mark: "OA", icon: ShieldCheck },
-      { name: "JavaScript", category: "Linguagem", mark: "JS", icon: Code2 },
-      { name: "Node.js", category: "Runtime", mark: "ND", icon: Network },
-      { name: "Python", category: "Automação", mark: "PY", icon: Workflow },
+      { name: "JavaScript", category: "Linguagem", mark: "JS", icon: Code2, logo: siJavascript },
+      { name: "Node.js", category: "Runtime", mark: "ND", icon: Network, logo: siNodedotjs },
+      { name: "Python", category: "Automação", mark: "PY", icon: Workflow, logo: siPython },
     ],
   },
   {
