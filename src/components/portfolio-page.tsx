@@ -424,7 +424,15 @@ function Stack() {
                           style={tool.logo ? { color: `#${tool.logo.hex}` } : undefined}
                           aria-label={tool.logo?.title ?? tool.name}
                         >
-                          {tool.logo ? (
+                          {tool.logoSrc ? (
+                            <Image
+                              src={tool.logoSrc}
+                              alt=""
+                              width={28}
+                              height={28}
+                              className="max-h-7 max-w-7 object-contain"
+                            />
+                          ) : tool.logo ? (
                             <svg role="img" viewBox="0 0 24 24" className="size-6" aria-hidden="true">
                               <path d={tool.logo.path} fill="currentColor" />
                             </svg>

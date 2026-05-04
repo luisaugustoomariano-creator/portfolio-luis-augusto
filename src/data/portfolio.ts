@@ -154,6 +154,7 @@ export type StackTool = {
   mark: string;
   icon: LucideIcon;
   logo?: SimpleIcon;
+  logoSrc?: string;
 };
 
 export type StackCategory = {
@@ -175,22 +176,22 @@ export const stackCategories: StackCategory[] = [
     tools: [
       { name: "WATI", category: "WhatsApp Business", mark: "WA", icon: MessageCircle, logo: siWhatsapp },
       { name: "GoTo Connect", category: "Telefonia", mark: "GT", icon: PhoneCall, logo: siGotomeeting },
-      { name: "RD Station", category: "Marketing", mark: "RD", icon: Headphones },
+      { name: "RD Station", category: "Marketing", mark: "RD", icon: Headphones, logoSrc: "/brand-logos/rd-station.png" },
     ],
   },
   {
     title: "ERP e operação",
     tools: [
-      { name: "Omie", category: "ERP", mark: "OM", icon: Activity },
-      { name: "SIGE", category: "Gestão operacional", mark: "SG", icon: Layers3 },
-      { name: "Auvo", category: "Pós-venda", mark: "AV", icon: CheckCircle2 },
+      { name: "Omie", category: "ERP", mark: "OM", icon: Activity, logoSrc: "/brand-logos/omie.png" },
+      { name: "SIGE", category: "Gestão operacional", mark: "SG", icon: Layers3, logoSrc: "/brand-logos/sige.png" },
+      { name: "Auvo", category: "Pós-venda", mark: "AV", icon: CheckCircle2, logoSrc: "/brand-logos/auvo.png" },
     ],
   },
   {
     title: "Desenvolvimento e integrações",
     tools: [
       { name: "APIs REST", category: "Integrações", mark: "API", icon: PlugZap, logo: siOpenapiinitiative },
-      { name: "OAuth2", category: "Autenticação", mark: "OA", icon: ShieldCheck },
+      { name: "OAuth2", category: "Autenticação", mark: "OA", icon: ShieldCheck, logoSrc: "/brand-logos/oauth.png" },
       { name: "JavaScript", category: "Linguagem", mark: "JS", icon: Code2, logo: siJavascript },
       { name: "Node.js", category: "Runtime", mark: "ND", icon: Network, logo: siNodedotjs },
       { name: "Python", category: "Automação", mark: "PY", icon: Workflow, logo: siPython },
@@ -199,8 +200,8 @@ export const stackCategories: StackCategory[] = [
   {
     title: "Dados e IA",
     tools: [
-      { name: "OpenAI / ChatGPT API", category: "IA aplicada", mark: "AI", icon: BrainCircuit },
-      { name: "Dashboards / BI", category: "Dados", mark: "BI", icon: LineChart },
+      { name: "OpenAI / ChatGPT API", category: "IA aplicada", mark: "AI", icon: BrainCircuit, logoSrc: "/brand-logos/openai.png" },
+      { name: "Dashboards / BI", category: "Dados", mark: "BI", icon: LineChart, logoSrc: "/brand-logos/power-bi.png" },
     ],
   },
 ];
