@@ -6,16 +6,18 @@ import {
   BrainCircuit,
   CheckCircle2,
   Clock3,
+  Code2,
   DatabaseZap,
   GitBranch,
+  Headphones,
   Layers3,
   LineChart,
+  MessageCircle,
   Network,
   PhoneCall,
   PlugZap,
   Repeat2,
   ShieldCheck,
-  Sparkles,
   Workflow,
   Zap,
 } from "lucide-react";
@@ -23,6 +25,13 @@ import {
 export const contact = {
   email: "luisaugustoo.mariano@gmail.com",
   linkedIn: "https://www.linkedin.com/in/luis-augusto-mariano-552b31332",
+  whatsapp:
+    "https://wa.me/5512988447368?text=Ol%C3%A1%20Luis%2C%20vi%20seu%20portf%C3%B3lio%20e%20quero%20conversar%20sobre%20CRM%2C%20automa%C3%A7%C3%B5es%20e%20integra%C3%A7%C3%B5es.",
+};
+
+export const profileImage = {
+  src: "/luis-augusto.jpg",
+  alt: "Luis Augusto Mariano",
 };
 
 export const navItems = [
@@ -129,25 +138,48 @@ export const projects: Project[] = [
   },
 ];
 
-export const stack = [
-  "Zoho CRM",
-  "Zoho Deluge",
-  "Zoho Client Script",
-  "JavaScript",
-  "Node.js",
-  "APIs REST",
-  "OAuth2",
-  "RD Station",
-  "WATI",
-  "Omie",
-  "GoTo Connect",
-  "Auvo",
-  "ChatGPT API",
-  "Dashboards",
-  "Growth Marketing",
-  "Automação Comercial",
-  "Integrações CRM/ERP",
-  "Inteligência de Dados",
+export const stackCategories = [
+  {
+    title: "CRM e automação",
+    tools: [
+      { name: "Zoho CRM", category: "CRM", mark: "ZC", icon: DatabaseZap },
+      { name: "Zoho Deluge", category: "Automação", mark: "DL", icon: Workflow },
+      { name: "Zoho Client Script", category: "CRM Frontend", mark: "CS", icon: Code2 },
+    ],
+  },
+  {
+    title: "Comunicação e atendimento",
+    tools: [
+      { name: "WATI", category: "WhatsApp Business", mark: "WA", icon: MessageCircle },
+      { name: "GoTo Connect", category: "Telefonia", mark: "GT", icon: PhoneCall },
+      { name: "RD Station", category: "Marketing", mark: "RD", icon: Headphones },
+    ],
+  },
+  {
+    title: "ERP e operação",
+    tools: [
+      { name: "Omie", category: "ERP", mark: "OM", icon: Activity },
+      { name: "SIGE", category: "Gestão operacional", mark: "SG", icon: Layers3 },
+      { name: "Auvo", category: "Pós-venda", mark: "AV", icon: CheckCircle2 },
+    ],
+  },
+  {
+    title: "Desenvolvimento e integrações",
+    tools: [
+      { name: "APIs REST", category: "Integrações", mark: "API", icon: PlugZap },
+      { name: "OAuth2", category: "Autenticação", mark: "OA", icon: ShieldCheck },
+      { name: "JavaScript", category: "Linguagem", mark: "JS", icon: Code2 },
+      { name: "Node.js", category: "Runtime", mark: "ND", icon: Network },
+      { name: "Python", category: "Automação", mark: "PY", icon: Workflow },
+    ],
+  },
+  {
+    title: "Dados e IA",
+    tools: [
+      { name: "OpenAI / ChatGPT API", category: "IA aplicada", mark: "AI", icon: BrainCircuit },
+      { name: "Dashboards / BI", category: "Dados", mark: "BI", icon: LineChart },
+    ],
+  },
 ];
 
 export const timeline = [
@@ -188,12 +220,12 @@ export const valueItems: ValueItem[] = [
 ];
 
 export const architectureNodes = [
-  { label: "CRM", detail: "Zoho estruturado", icon: DatabaseZap },
-  { label: "ERP", detail: "Omie integrado", icon: Activity },
-  { label: "WhatsApp", detail: "WATI automatizado", icon: Sparkles },
-  { label: "Telefonia", detail: "GoTo validado", icon: PhoneCall },
-  { label: "IA", detail: "Contexto comercial", icon: BrainCircuit },
-  { label: "Pós-venda", detail: "Auvo integrado", icon: CheckCircle2 },
+  { label: "CRM", detail: "Base da operação", icon: DatabaseZap },
+  { label: "ERP", detail: "Pedido e financeiro", icon: Activity },
+  { label: "WhatsApp", detail: "Atendimento comercial", icon: MessageCircle },
+  { label: "Telefonia", detail: "Validação de contato", icon: PhoneCall },
+  { label: "IA", detail: "Contexto e análise", icon: BrainCircuit },
+  { label: "Pós-venda", detail: "Execução técnica", icon: CheckCircle2 },
 ];
 
 export const statusChips = [

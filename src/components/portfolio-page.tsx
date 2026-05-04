@@ -7,18 +7,21 @@ import {
   ExternalLink,
   Mail,
   Menu,
+  MessageCircle,
   MoveRight,
   Network,
   X,
 } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 import {
   architectureNodes,
   contact,
   navItems,
   pillars,
+  profileImage,
   projects,
-  stack,
+  stackCategories,
   statusChips,
   timeline,
   valueItems,
@@ -49,6 +52,39 @@ export function PortfolioPage() {
   );
 }
 
+function ProfilePhoto({ size = "large" }: { size?: "large" | "compact" }) {
+  const [hasImageError, setHasImageError] = useState(false);
+  const isLarge = size === "large";
+
+  return (
+    <div
+      className={[
+        "relative overflow-hidden rounded-[1.75rem] border border-white/12 bg-white/[0.055] shadow-2xl shadow-cyan-950/25 backdrop-blur",
+        isLarge ? "h-72 w-full max-w-72 p-2 sm:h-80 sm:max-w-80" : "size-16 rounded-2xl p-1",
+      ].join(" ")}
+    >
+      <div className="relative h-full w-full overflow-hidden rounded-[1.35rem] border border-white/10 bg-gradient-to-br from-emerald-300/18 via-cyan-300/12 to-slate-950">
+        {!hasImageError ? (
+          <Image
+            src={profileImage.src}
+            alt={profileImage.alt}
+            fill
+            priority={isLarge}
+            sizes={isLarge ? "(max-width: 768px) 288px, 320px" : "64px"}
+            className="object-cover"
+            onError={() => setHasImageError(true)}
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center text-3xl font-semibold text-emerald-100 sm:text-5xl">
+            LM
+          </div>
+        )}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#030812]/35 via-transparent to-white/5" />
+      </div>
+    </div>
+  );
+}
+
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -74,10 +110,12 @@ function Header() {
         </nav>
 
         <a
-          href={`mailto:${contact.email}`}
+          href={contact.whatsapp}
+          target="_blank"
+          rel="noreferrer"
           className="hidden items-center gap-2 rounded-full border border-cyan-300/25 bg-cyan-300/10 px-5 py-2.5 text-sm font-medium text-cyan-100 transition hover:border-cyan-200/50 hover:bg-cyan-300/15 lg:inline-flex"
         >
-          <Mail size={16} />
+          <MessageCircle size={16} />
           Contato
         </a>
 
@@ -116,9 +154,12 @@ function Hero() {
     <section id="topo" className="relative px-5 pb-20 pt-16 sm:px-8 lg:pb-28 lg:pt-24">
       <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.03fr_0.97fr]">
         <motion.div {...fadeUp}>
-          <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-emerald-300/20 bg-emerald-300/10 px-4 py-2 text-sm text-emerald-100">
-            <Network size={16} />
-            Operações comerciais conectadas
+          <div className="mb-7 flex flex-col gap-5 sm:flex-row sm:items-center">
+            <ProfilePhoto size="compact" />
+            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-emerald-300/20 bg-emerald-300/10 px-4 py-2 text-sm text-emerald-100">
+              <Network size={16} />
+              Operações comerciais conectadas
+            </div>
           </div>
           <h1 className="max-w-4xl text-4xl font-semibold leading-tight text-white sm:text-6xl lg:text-7xl">
             CRM, integrações e IA para escalar operações comerciais.
@@ -129,10 +170,12 @@ function Hero() {
           </p>
           <div className="mt-9 flex flex-col gap-4 sm:flex-row">
             <a
-              href={`mailto:${contact.email}`}
+              href={contact.whatsapp}
+              target="_blank"
+              rel="noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-300 px-6 py-3.5 text-sm font-semibold text-slate-950 transition hover:bg-emerald-200"
             >
-              Entrar em contato
+              Chamar no WhatsApp
               <ArrowRight size={17} />
             </a>
             <a
@@ -274,12 +317,15 @@ function Pillars() {
 function About() {
   return (
     <section id="sobre" className="px-5 py-16 sm:px-8 lg:py-24">
-      <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.72fr_1.28fr]">
-        <motion.div {...fadeUp}>
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-cyan-200">Sobre mim</p>
-          <h2 className="mt-4 text-3xl font-semibold text-white sm:text-5xl">
-            Negócio, processo e tecnologia na mesma mesa.
-          </h2>
+      <div className="mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-[0.78fr_1.22fr]">
+        <motion.div {...fadeUp} className="flex flex-col gap-7">
+          <ProfilePhoto />
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-cyan-200">Sobre mim</p>
+            <h2 className="mt-4 text-3xl font-semibold text-white sm:text-5xl">
+              Negócio, processo e tecnologia na mesma mesa.
+            </h2>
+          </div>
         </motion.div>
         <motion.div
           {...fadeUp}
@@ -357,19 +403,36 @@ function Stack() {
       <div className="mx-auto max-w-7xl">
         <SectionIntro
           eyebrow="Stack técnica"
-          title="Ferramentas para construir operações conectadas."
-          description="Tecnologias, plataformas e disciplinas que uso para estruturar CRM, automações, integrações e gestão por dados."
+          title="Stack técnica"
+          description="Ferramentas, linguagens e plataformas que já integrei para construir operações comerciais conectadas."
         />
-        <motion.div {...fadeUp} className="flex flex-wrap justify-center gap-3">
-          {stack.map((item) => (
-            <span
-              key={item}
-              className="rounded-2xl border border-white/10 bg-white/[0.045] px-4 py-3 text-sm font-medium text-slate-200 transition hover:border-cyan-200/30 hover:bg-cyan-300/10"
-            >
-              {item}
-            </span>
+        <div className="space-y-8">
+          {stackCategories.map((group, groupIndex) => (
+            <motion.div key={group.title} {...fadeUp} transition={{ ...fadeUp.transition, delay: groupIndex * 0.04 }}>
+              <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-emerald-200">{group.title}</h3>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {group.tools.map((tool) => {
+                  const Icon = tool.icon;
+                  return (
+                    <article
+                      key={tool.name}
+                      className="group rounded-3xl border border-white/10 bg-white/[0.045] p-5 backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-cyan-200/35 hover:bg-white/[0.07] hover:shadow-2xl hover:shadow-cyan-950/20"
+                    >
+                      <div className="mb-5 flex items-center justify-between gap-4">
+                        <span className="flex size-12 items-center justify-center rounded-2xl border border-cyan-300/20 bg-cyan-300/10 text-sm font-semibold text-cyan-100">
+                          {tool.mark}
+                        </span>
+                        <Icon size={20} className="text-emerald-200 transition group-hover:text-cyan-100" />
+                      </div>
+                      <h4 className="text-lg font-semibold text-white">{tool.name}</h4>
+                      <p className="mt-2 text-sm text-slate-400">{tool.category}</p>
+                    </article>
+                  );
+                })}
+              </div>
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -448,11 +511,13 @@ function ContactCTA() {
         </p>
         <div className="mt-9 flex flex-col justify-center gap-4 sm:flex-row">
           <a
-            href={`mailto:${contact.email}`}
+            href={contact.whatsapp}
+            target="_blank"
+            rel="noreferrer"
             className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-300 px-6 py-3.5 text-sm font-semibold text-slate-950 transition hover:bg-emerald-200"
           >
-            Enviar e-mail
-            <Mail size={17} />
+            Chamar no WhatsApp
+            <MessageCircle size={17} />
           </a>
           <a
             href={contact.linkedIn}
@@ -460,10 +525,17 @@ function ContactCTA() {
             rel="noreferrer"
             className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white transition hover:border-cyan-200/40 hover:bg-white/10"
           >
-            LinkedIn
+            Ver LinkedIn
             <ExternalLink size={17} />
           </a>
         </div>
+        <a
+          href={`mailto:${contact.email}`}
+          className="mt-7 inline-flex items-center justify-center gap-2 text-sm font-medium text-cyan-100 transition hover:text-cyan-50"
+        >
+          <Mail size={16} />
+          {contact.email}
+        </a>
       </motion.div>
     </section>
   );
